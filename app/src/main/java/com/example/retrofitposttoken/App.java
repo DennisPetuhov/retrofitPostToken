@@ -5,10 +5,15 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.example.retrofitposttoken.DI.DaggerMyComponent;
+import com.example.retrofitposttoken.DI.MyComponent;
+
 
 public class App extends Application {
+    public  MyComponent myComponent;
     public static SharedPreferences sharedPreferences;
     private static Context context;
+
 
 
 
@@ -18,6 +23,7 @@ public class App extends Application {
         super.onCreate();
         context = this;
         sharedPreferences = context.getSharedPreferences("aaa", Context.MODE_PRIVATE);
+        myComponent= DaggerMyComponent.builder().createContext(this).build();
 
 
 

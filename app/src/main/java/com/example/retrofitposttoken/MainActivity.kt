@@ -7,14 +7,19 @@ import android.os.Bundle
 import android.widget.Toast
 
 import androidx.lifecycle.lifecycleScope
+import com.example.retrofitposttoken.DI.MyComponent
 import com.example.retrofitposttoken.databinding.ActivityMainBinding
 
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
+    lateinit var myComponent:MyComponent
+    @Inject
+    lateinit var  api:PetApi
     private lateinit var binding: ActivityMainBinding
-    val api = ApiHelper.getInstanceOfRetrofit() // ссылка на наш АПИ
+//    val api = ApiHelper.getInstanceOfRetrofit() // ссылка на наш АПИ
     val signup = SignUpForm("admin",
         "admin",
         "admin@admin.ru",
@@ -23,16 +28,20 @@ class MainActivity : AppCompatActivity() {
 
     )
     val signin=SignInForm("admin","admin")
+    @Inject
     lateinit var  pref: SharedPreferences
 
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        var app: App=applicationContext as App
+        myComponent =app.myComponent
+        myComponent.inject(this)
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-        pref =  getSharedPreferences("aaa", Context.MODE_PRIVATE)
+      //  pref =  getSharedPreferences("aaa", Context.MODE_PRIVATE)
         /*
       SetContentView is used to fill the window with the UI
        provided from layout file incase of setContentView(R. layout. somae_file).
