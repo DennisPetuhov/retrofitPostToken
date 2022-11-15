@@ -1,11 +1,13 @@
 package com.example.retrofitposttoken
 
 
+import android.content.SharedPreferences
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
+import javax.inject.Inject
 
-object MyInterseptor : Interceptor {
+class MyInterseptor @Inject constructor(var sharedPreferences: SharedPreferences) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         var request = chain.request()
         println("!!!!" + request)
@@ -20,7 +22,7 @@ object MyInterseptor : Interceptor {
         }else{
 
             newRequest = requestBuilder
-                .header("Authorisation", "Bearer ${App.getSharedPreferences().getString("EDIT_TEXT_KEY","")}")
+                .header("Authorisation", "Bearer ${sharedPreferences.getString("EDIT_TEXT_KEY","")}")
                 .build()
        println(newRequest.url())
        println(newRequest.header("Authorisation"))

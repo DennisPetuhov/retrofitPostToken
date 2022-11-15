@@ -1,6 +1,6 @@
 package com.example.retrofitposttoken.DI
 
-import com.example.retrofitposttoken.ApiHelper
+
 import com.example.retrofitposttoken.MyInterseptor
 import com.example.retrofitposttoken.PetApi
 import dagger.Module
@@ -15,8 +15,8 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 
 class ApiModule {
     @Provides
-    fun provideInterceptor(): OkHttpClient {
-     return   Builder().addInterceptor(MyInterseptor).build()
+    fun provideInterceptor(myInterseptor: MyInterseptor): OkHttpClient {
+     return   Builder().addInterceptor(myInterseptor).build()
     }
     @Provides
     fun provideApi(okHttpClient: OkHttpClient): PetApi {

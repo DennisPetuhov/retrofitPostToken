@@ -21,7 +21,7 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        context = this;
+       context = this;
         sharedPreferences = context.getSharedPreferences("aaa", Context.MODE_PRIVATE);
         myComponent= DaggerMyComponent.builder().createContext(this).build();
 
@@ -29,9 +29,7 @@ public class App extends Application {
 
     }
 
-    public static Context getContext() {
-        return context;
-    }
+   public static Context getContext() {        return context;    }
 
     public static SharedPreferences getSharedPreferences() {
         return sharedPreferences;

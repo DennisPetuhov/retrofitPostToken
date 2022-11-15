@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this@MainActivity,body,Toast.LENGTH_SHORT).show()
 
             } else{
-                Toast.makeText(this@MainActivity,"response.message()",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivity,"NO response.message",Toast.LENGTH_SHORT).show()
 
             }
         }
@@ -99,7 +99,7 @@ class MainActivity : AppCompatActivity() {
             if (response.isSuccessful) {
 //                val token = response.headers().get("Access-Token")
                 //toPreferences(token)
-                 var b:String? =  response.body()
+                 val b:String? =  response.body()
 
                  Toast.makeText(this@MainActivity,b,Toast.LENGTH_SHORT).show()
             }
